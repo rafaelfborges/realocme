@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,13 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Red
  */
-public class UsuarioController extends HttpServlet {
-    private UsuarioDAO usuarioDAO;
+public class EmpresaController extends HttpServlet {
 
-    public UsuarioController() {
-        this.usuarioDAO = new UsuarioDAO();
-    }
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,6 +26,7 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
 }
