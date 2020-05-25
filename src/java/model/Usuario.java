@@ -12,25 +12,23 @@ public class Usuario {
     private String urlFoto;
     private String nomeCompleto;
     private String titulo;
-    private String email;
     private String resumo;
     private String interesse;
     private Empresa ultimoEmprego;
-    private List<RedeSocial> redesSociais;
+    private List<Contato> contatos;
     private List<Comentario> comentarios;
 
     public Usuario() {
     }
 
-    public Usuario(String urlFoto, String nomeCompleto, String titulo, String email, String resumo, String interesse, Empresa ultimoEmprego, List<RedeSocial> redesSociais, List<Comentario> comentarios) {
+    public Usuario(String urlFoto, String nomeCompleto, String titulo, String resumo, String interesse, Empresa ultimoEmprego, List<Contato> contatos, List<Comentario> comentarios) {
         this.urlFoto = urlFoto;
         this.nomeCompleto = nomeCompleto;
         this.titulo = titulo;
-        this.email = email;
         this.resumo = resumo;
         this.interesse = interesse;
         this.ultimoEmprego = ultimoEmprego;
-        this.redesSociais = redesSociais;
+        this.contatos = contatos;
         this.comentarios = comentarios;
     }
 
@@ -58,14 +56,6 @@ public class Usuario {
         this.titulo = titulo;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getResumo() {
         return resumo;
     }
@@ -90,12 +80,12 @@ public class Usuario {
         this.ultimoEmprego = ultimoEmprego;
     }
 
-    public List<RedeSocial> getRedesSociais() {
-        return redesSociais;
+    public List<Contato> getContatos() {
+        return contatos;
     }
 
-    public void setRedesSociais(List<RedeSocial> redesSociais) {
-        this.redesSociais = redesSociais;
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
     }
 
     public List<Comentario> getComentarios() {

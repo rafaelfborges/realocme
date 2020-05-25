@@ -9,11 +9,11 @@ package model;
  *
  * @author Red
  */
-public class RedeSocial {
+public class Contato {
     private String nome;
     private String url;
 
-    public RedeSocial(String nome, String url) {
+    public Contato(String nome, String url) {
         this.nome = nome;
         this.url = url;
     }

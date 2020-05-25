@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class Empresa {
     private String nome;
-    private List<RedeSocial> redesSociais;
+    private List<Contato> contatos;
 
-    public Empresa(String nome, List<RedeSocial> redesSociais) {
+    public Empresa(String nome, List<Contato> contatos) {
         this.nome = nome;
-        this.redesSociais = redesSociais;
+        this.contatos = contatos;
     }
 
     public String getNome() {
@@ -28,11 +28,11 @@ public class Empresa {
         this.nome = nome;
     }
 
-    public List<RedeSocial> getRedesSociais() {
-        return redesSociais;
+    public List<Contato> getContatos() {
+        return contatos;
     }
 
-    public void setRedesSociais(List<RedeSocial> redesSociais) {
-        this.redesSociais = redesSociais;
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
     }
 }

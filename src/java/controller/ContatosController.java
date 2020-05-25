@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Red
  */
-public class RedeSocialController extends HttpServlet {
+public class ContatosController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
