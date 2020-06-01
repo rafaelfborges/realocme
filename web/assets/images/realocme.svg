@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="656" height="173" viewBox="0 0 656 173">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7e2fc4;
+      }
+
+      .cls-2 {
+        fill: #201e1e;
+      }
+
+      .cls-2, .cls-3 {
+        font-size: 143px;
+        font-family: Roboto-Bold, Roboto;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Logo_Realocme" data-name="Logo Realocme" transform="translate(-329 -331.7)">
+    <g id="Logo" transform="translate(329 331.7)">
+      <rect id="Retângulo_1" data-name="Retângulo 1" class="cls-1" width="213" height="173" rx="4" transform="translate(443 0)"/>
+      <text id="Realoc" class="cls-2" transform="translate(0 136)"><tspan x="0" y="0">Realoc</tspan></text>
+      <text id="me" class="cls-3" transform="translate(448 136)"><tspan x="0" y="0">me</tspan></text>
+    </g>
+  </g>
+</svg>

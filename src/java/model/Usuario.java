@@ -16,12 +16,14 @@ public class Usuario {
     private String interesse;
     private Empresa ultimoEmprego;
     private List<Contato> contatos;
-    private List<Comentario> comentarios;
+    private List<Indicacao> indicacoes;
 
     public Usuario() {
     }
 
-    public Usuario(String urlFoto, String nomeCompleto, String titulo, String resumo, String interesse, Empresa ultimoEmprego, List<Contato> contatos, List<Comentario> comentarios) {
+    public Usuario(String urlFoto, String nomeCompleto, String titulo, 
+                    String resumo, String interesse, Empresa ultimoEmprego, 
+                    List<Contato> contatos, List<Indicacao> indicacoes) {
         this.urlFoto = urlFoto;
         this.nomeCompleto = nomeCompleto;
         this.titulo = titulo;
@@ -29,7 +31,7 @@ public class Usuario {
         this.interesse = interesse;
         this.ultimoEmprego = ultimoEmprego;
         this.contatos = contatos;
-        this.comentarios = comentarios;
+        this.indicacoes = indicacoes;
     }
 
     public String getUrlFoto() {
@@ -88,11 +90,11 @@ public class Usuario {
         this.contatos = contatos;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public List<Indicacao> getIndicacoes() {
+        return indicacoes;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setIndicacoes(List<Indicacao> indicacoes) {
+        this.indicacoes = indicacoes;
     }
 }

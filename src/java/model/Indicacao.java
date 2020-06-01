@@ -7,15 +7,15 @@ package model;
 
 import java.time.LocalDate;
 
-public class Comentario {
+public class Indicacao {
     private Usuario usuario;
     private String comentario;
     private LocalDate data;
 
-    public Comentario() {
+    public Indicacao() {
     }
 
-    public Comentario(Usuario usuario, String comentario, LocalDate data) {
+    public Indicacao(Usuario usuario, String comentario, LocalDate data) {
         this.usuario = usuario;
         this.comentario = comentario;
         this.data = data;
