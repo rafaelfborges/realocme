@@ -8,25 +8,15 @@ package model;
 import java.time.LocalDate;
 
 public class Indicacao {
-    private Usuario usuario;
     private String comentario;
     private LocalDate data;
 
     public Indicacao() {
     }
 
-    public Indicacao(Usuario usuario, String comentario, LocalDate data) {
-        this.usuario = usuario;
+    public Indicacao(String comentario, LocalDate data) {
         this.comentario = comentario;
         this.data = data;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public String getComentario() {

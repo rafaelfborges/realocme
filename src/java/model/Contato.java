@@ -10,20 +10,23 @@ package model;
  * @author Red
  */
 public class Contato {
-    private String nome;
+    private String tipo;
     private String url;
 
-    public Contato(String nome, String url) {
-        this.nome = nome;
+    public Contato() {
+    }
+
+    public Contato(String tipo, String url) {
+        this.tipo = tipo;
         this.url = url;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getUrl() {
@@ -32,5 +35,5 @@ public class Contato {
 
     public void setUrl(String url) {
         this.url = url;
-    }    
+    }
 }

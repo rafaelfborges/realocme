@@ -11,27 +11,23 @@ import java.util.List;
 public class Usuario {
     private String urlFoto;
     private String nomeCompleto;
-    private String titulo;
+    private String email;
+    private String profissao;
     private String resumo;
-    private String interesse;
-    private Empresa ultimoEmprego;
+    private String cargoPretendido;
     private List<Contato> contatos;
     private List<Indicacao> indicacoes;
 
-    public Usuario() {
-    }
-
-    public Usuario(String urlFoto, String nomeCompleto, String titulo, 
-                    String resumo, String interesse, Empresa ultimoEmprego, 
-                    List<Contato> contatos, List<Indicacao> indicacoes) {
+    public Usuario(
+            String urlFoto, String nomeCompleto, String email, String profissao, 
+            String resumo, String cargoPretendido, List<Contato> contatos) {
         this.urlFoto = urlFoto;
         this.nomeCompleto = nomeCompleto;
-        this.titulo = titulo;
+        this.email = email;
+        this.profissao = profissao;
         this.resumo = resumo;
-        this.interesse = interesse;
-        this.ultimoEmprego = ultimoEmprego;
+        this.cargoPretendido = cargoPretendido;
         this.contatos = contatos;
-        this.indicacoes = indicacoes;
     }
 
     public String getUrlFoto() {
@@ -50,12 +46,20 @@ public class Usuario {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getProfissao() {
+        return profissao;
+    }
+
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
     public String getResumo() {
@@ -66,20 +70,12 @@ public class Usuario {
         this.resumo = resumo;
     }
 
-    public String getInteresse() {
-        return interesse;
+    public String getCargoPretendido() {
+        return cargoPretendido;
     }
 
-    public void setInteresse(String interesse) {
-        this.interesse = interesse;
-    }
-
-    public Empresa getUltimoEmprego() {
-        return ultimoEmprego;
-    }
-
-    public void setUltimoEmprego(Empresa ultimoEmprego) {
-        this.ultimoEmprego = ultimoEmprego;
+    public void setCargoPretendido(String cargoPretendido) {
+        this.cargoPretendido = cargoPretendido;
     }
 
     public List<Contato> getContatos() {
