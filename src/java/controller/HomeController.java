@@ -6,8 +6,8 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,15 +31,15 @@ public class HomeController extends HttpServlet {
                 break;
             
             case "listar":
-                request.getServletContext().getRequestDispatcher("/ListarUsuarioController").forward(request, response);
+                //request.getServletContext().getRequestDispatcher("/ListarUsuarioController").forward(request, response);
                 break;
                 
             case "editar":
-                request.getServletContext().getRequestDispatcher("/EditarUsuarioController?funcao=opcoes").forward(request, response);
+                //request.getServletContext().getRequestDispatcher("/EditarUsuarioController?funcao=opcoes").forward(request, response);
                 break;
                 
             case "deletar":
-                request.getServletContext().getRequestDispatcher("/DeletarUsuarioController?funcao=opcoes").forward(request, response);
+                //request.getServletContext().getRequestDispatcher("/DeletarUsuarioController?funcao=opcoes").forward(request, response);
                 break;
         }
     }

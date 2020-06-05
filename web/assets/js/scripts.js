@@ -42,7 +42,7 @@ function addCampoContato(){
                 </div>
             `);
         }
-    })
+    });
 
     $("#formCadastro").on("click", ".btn-apagar", function() {
         var btnId = $(this).attr("id");
@@ -56,7 +56,7 @@ function cadastrarUsuario() {
     event.preventDefault();
     let dados = $(this).serializeArray();
     $.ajax({
-      url: "UsuarioController?acao=cadastrar",
+      url: "usuario?acao=cadastrar",
       cache: false,
       data: dados,
       type: "POST",
@@ -70,7 +70,7 @@ function cadastrarUsuario() {
       error: (response) => {
         swal("Oops!", "Algum problema com seu cadastro: " + response.responseText, "warning");
       }
-    })
+    });
   });
 }
 
