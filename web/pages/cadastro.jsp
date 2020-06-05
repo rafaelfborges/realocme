@@ -22,7 +22,7 @@
     <body>        
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="http://www.realoc.me">
+                <a class="navbar-brand" href="/realocme">
                   <img src="assets/images/realocme.svg" width="150" height="35" class="d-inline-block align-top" alt="Realoc.me">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                          <a class="nav-link" href="HomeController?opcao=cadastrar">Cadastrar</a>
+                          <a class="nav-link" href="home?opcao=cadastrar">Cadastrar</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">Link</a>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="profissao">Profissão:</label>
-                            <input type="text" name="profissao" id="profissao" class="form-control" placeholder="Ex: Desenvolvedor(a) Java" required>
+                            <input type="text" name="profissao" id="profissao" class="form-control" placeholder="Ex: Desenvolvedor(a)" required>
                         </div>
                         <div class="form-group">
                             <label for="resumo">Resumo:</label>
@@ -110,7 +110,9 @@
                 <div class="row mt-4">
                     <div class="col-sm-12">
                         <button id="buttonCadastrar" class="btn btn-success btn-lg" type="submit">Cadastrar</button>
-                        <button id="buttonCadastrar" class="btn btn-dark btn-lg" type="button">Voltar</button>
+                        <a href="/realocme">
+                            <button id="buttonCadastrar" class="btn btn-dark btn-lg" type="button">Voltar</button>
+                        </a>
                     </div>
                 </div>
             </form>

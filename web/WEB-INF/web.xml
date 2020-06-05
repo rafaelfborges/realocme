@@ -8,37 +8,13 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>controller.UsuarioController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ComentarioController</servlet-name>
-        <servlet-class>controller.ComentarioController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EmpresaController</servlet-name>
-        <servlet-class>controller.EmpresaController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RedeSocialController</servlet-name>
-        <servlet-class>controller.ContatosController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
-        <url-pattern>/HomeController</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
-        <url-pattern>/UsuarioController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ComentarioController</servlet-name>
-        <url-pattern>/ComentarioController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EmpresaController</servlet-name>
-        <url-pattern>/EmpresaController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RedeSocialController</servlet-name>
-        <url-pattern>/RedeSocialController</url-pattern>
+        <url-pattern>/usuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

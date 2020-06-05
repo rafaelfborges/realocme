@@ -5,33 +5,31 @@
  */
 package model;
 
-import java.time.LocalDate;
-
 public class Indicacao {
+    private String nomePessoa;
     private String comentario;
-    private LocalDate data;
-
+    
     public Indicacao() {
     }
 
-    public Indicacao(String comentario, LocalDate data) {
+    public Indicacao(String nomePessoa, String comentario) {
+        this.nomePessoa = nomePessoa;
         this.comentario = comentario;
-        this.data = data;
     }
 
+    public String getNomePessoa() {
+        return nomePessoa;
+    }
+
+    public void setNomePessoa(String nomePessoa) {
+        this.nomePessoa = nomePessoa;
+    }
+    
     public String getComentario() {
         return comentario;
     }
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 }

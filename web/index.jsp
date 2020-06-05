@@ -22,7 +22,7 @@
     <body>        
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/Realocme">
                   <img src="assets/images/realocme.svg" width="150" height="35" class="d-inline-block align-top" alt="Realoc.me">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                          <a class="nav-link" href="HomeController?opcao=cadastrar">Cadastrar</a>
+                          <a class="nav-link" href="home?opcao=cadastrar">Cadastrar</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">Link</a>
