@@ -140,10 +140,13 @@
                             </div>
                         </div>
                                                                        
-                        <button id="buttonAtualizar" class="btn btn-success btn-lg" type="submit">Atualizar</button>
-                        <a href="/realocme">
-                            <button id="buttonVoltar" class="btn btn-dark btn-lg" type="button">Voltar</button>
-                        </a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button id="buttonAtualizar" class="btn btn-success btn-lg" type="submit">Atualizar</button>
+                            <a href="/realocme">
+                                <button id="buttonVoltar" class="btn btn-dark btn-lg" type="button">Voltar</button>
+                            </a>
+                            <button type="button" id="excluirUsuario" class="btn btn-danger btn-lg" onclick="removerUsuario(${usuario.id});">Excluir Perfil</button>
+                        </div>
                     </div>
                 </div>
             </form>
