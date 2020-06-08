@@ -89,6 +89,13 @@ public class UsuarioController extends HttpServlet {
                 }
                 break;
                 
+            case "deletar":
+                if(removerUsuario(request) != -1) {
+                    request.getSession().invalidate();
+                    response.setStatus(200);
+                }
+                break;
+                
             default:
                 response.setStatus(400);
         }
@@ -184,5 +191,11 @@ public class UsuarioController extends HttpServlet {
             usuario.setPerfilAtivo(0);
                             
         return usuarioDAO.update(usuario);
+    }
+    
+    private int removerUsuario(HttpServletRequest request) {
+        int usuarioId = Integer.parseInt(request.getParameter("id"));
+        
+        return usuarioDAO.remove(usuarioId);
     }
 }

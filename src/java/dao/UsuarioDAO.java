@@ -169,4 +169,17 @@ public class UsuarioDAO {
             return e.getErrorCode();
         }
     }
+    
+    public int remove(int usuarioId) {
+        try {
+            query = "DELETE FROM usuario WHERE id = ?";
+            stmt = conn.getConnection().prepareStatement(query);
+            stmt.setInt(1, usuarioId);
+            
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return -1;
+    }
 }

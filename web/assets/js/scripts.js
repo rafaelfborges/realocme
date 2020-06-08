@@ -77,6 +77,35 @@ function cadastrarUsuario() {
   });
 }
 
+function removerUsuario(idUsuario) {
+    event.preventDefault();
+    swal({
+        title: "Tem certeza?",
+        text: "Deletar sua conta não poderá ser revertida!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: "usuario?acao=deletar&id=" + idUsuario,
+                cache: false,
+                type: "POST",
+                success: () => {
+                    swal("Adeus!", "Conta deletada com sucesso!", "success")
+                    .then(() => {
+                        window.location.href = "home";
+                    });
+                },
+                error: (response) => {
+                    swal("Oops!", "Algum problema ao remover conta: " + response.responseText, "warning");
+                }
+            });
+        }
+    });
+}
+
 function atualizarUsuario() {
   $("#formAtualizar").submit(function () {
     event.preventDefault();
