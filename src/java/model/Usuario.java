@@ -9,27 +9,40 @@ import java.util.List;
 
 
 public class Usuario {
+    private int id;
     private String urlFoto;
     private String nomeCompleto;
     private String email;
+    private String senha;
     private String profissao;
     private String resumo;
     private String cargoPretendido;
+    private int perfilAtivo;
     private List<Contato> contatos;
     private List<Indicacao> indicacoes;
 
-    public Usuario(
-            String urlFoto, String nomeCompleto, String email, String profissao, 
-            String resumo, String cargoPretendido, List<Contato> contatos) {
+    public Usuario() {
+    }
+    
+    public Usuario(String urlFoto, String nomeCompleto, String email, String senha, String profissao, String resumo, String cargoPretendido, List<Contato> contatos) {
         this.urlFoto = urlFoto;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
+        this.senha = senha;
         this.profissao = profissao;
         this.resumo = resumo;
         this.cargoPretendido = cargoPretendido;
         this.contatos = contatos;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getUrlFoto() {
         return urlFoto;
     }
@@ -52,6 +65,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getProfissao() {
@@ -78,6 +99,14 @@ public class Usuario {
         this.cargoPretendido = cargoPretendido;
     }
 
+    public int getPerfilAtivo() {
+        return perfilAtivo;
+    }
+
+    public void setPerfilAtivo(int perfilAtivo) {
+        this.perfilAtivo = perfilAtivo;
+    }
+    
     public List<Contato> getContatos() {
         return contatos;
     }

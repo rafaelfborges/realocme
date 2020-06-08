@@ -10,6 +10,7 @@ package model;
  * @author Red
  */
 public class Contato {
+    private int id;
     private String tipo;
     private String url;
 
@@ -21,6 +22,14 @@ public class Contato {
         this.url = url;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getTipo() {
         return tipo;
     }

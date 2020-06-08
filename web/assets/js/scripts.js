@@ -7,6 +7,9 @@ $(document).ready(function () {
   aplicarMaterialDesign();
   addCampoContato();
   cadastrarUsuario();
+  atualizarUsuario();
+  validarSenha();
+  autenticarUsuario();
 });
 
 function addCampoContato(){
@@ -62,15 +65,80 @@ function cadastrarUsuario() {
       type: "POST",
       success: () => {
         this.reset();
-        swal("Bem vindo!", "Cadastrado com sucesso", "success")
+        swal("Bem vindo!", "Cadastrado com sucesso! Vamos te redirecionar para o login.", "success")
         .then(() => {
-            window.location.href = "index.jsp";
+            window.location.href = "login.html";
         });
       },
       error: (response) => {
         swal("Oops!", "Algum problema com seu cadastro: " + response.responseText, "warning");
       }
     });
+  });
+}
+
+function atualizarUsuario() {
+  $("#formAtualizar").submit(function () {
+    event.preventDefault();
+    let dados = $(this).serializeArray();
+    $.ajax({
+      url: "usuario?acao=atualizar",
+      cache: false,
+      data: dados,
+      type: "POST",
+      success: () => {
+        swal("Bem vindo!", "Atualizado com sucesso!", "success");
+      },
+      error: (response) => {
+        swal("Oops!", "Algum problema ao atualizar cadastro: " + response.responseText, "warning");
+      }
+    });
+  });
+}
+
+function autenticarUsuario() {
+  $("#formLogin").submit(function () {
+    event.preventDefault();
+    let dados = $(this).serializeArray();
+    $.ajax({
+      url: "usuario?acao=login",
+      cache: false,
+      data: dados,
+      type: "POST",
+      success: () => {
+        this.reset();
+        window.location.href = "home";
+      },
+      error: (response) => {
+        swal("Oops!", "Algum problema ao autenticar: " + response.responseText, "warning");
+      }
+    });
+  });
+}
+
+function validarSenha() {
+  $("#confirmaSenha").blur(() => {
+    const senhaA = $("#senha");
+    const senhaB = $("#confirmaSenha");
+
+    if (senhaA.val() === senhaB.val()) {
+      
+      if(senhaA.hasClass("is-invalid")) {
+        senhaA.removeClass("is-invalid");
+        senhaB.removeClass("is-invalid");
+      }
+      senhaA.toggleClass("is-valid");
+      senhaB.toggleClass("is-valid");
+      $("#buttonCadastrar").removeAttr("disabled");
+    } else {
+      if (senhaA.hasClass("is-valid")) {
+        senhaA.removeClass("is-valid");
+        senhaB.removeClass("is-valid");
+      }
+      senhaA.toggleClass("is-invalid");
+      senhaB.toggleClass("is-invalid");
+      $("#buttonCadastrar").attr("disabled", true);
+    }
   });
 }
 

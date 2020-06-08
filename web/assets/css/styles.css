@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07/06/2020, 08:07:26
+    Author     : Red
+*/
+
+.img-card {
+    height: 180px;
+    width: 100%;
+}
+
+.card {
+    min-height: 180px;
+    max-width: 540px;
+}
+
+.text-indigo {
+    color: #3f51b5 !important;
+}
+
+.text-realocme {
+    color: #7E2FC4 !important;
+}
+
+.icons {
+    font-size: 1rem;
+}
+
+.text-newgrey {
+    color: #343a40 !important;
+}
+
+form-login {
+    max-width: 400px;
+}

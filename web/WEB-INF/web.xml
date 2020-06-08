@@ -8,6 +8,10 @@
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>controller.UsuarioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndicacaoController</servlet-name>
+        <servlet-class>controller.IndicacaoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -16,9 +20,16 @@
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/usuario</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndicacaoController</servlet-name>
+        <url-pattern>/indicacao</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 </web-app>

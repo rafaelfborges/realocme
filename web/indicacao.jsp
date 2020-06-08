@@ -6,7 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<jsp:useBean id="usuarios" type="java.util.List<model.Usuario>" scope="request" />
+<jsp:useBean id="indicacoes" type="java.util.List<model.Indicacao>" scope="request" />
+<jsp:useBean id="usuario" type="model.Usuario" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,7 +53,7 @@
                                         ${sessionScope.nome}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="usuario?acao=listar&id=${sessionScope.id}">Minha Conta</a>
+                                        <a class="dropdown-item" href="#">Minha Conta</a>
                                         <a class="dropdown-item" href="#">Ajuda</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="usuario?acao=logoff" id="logoff">Sair</a>
@@ -75,66 +76,80 @@
         </header>
 
         <section class="container mt-4">
-            <!-- Content here -->      
             <div class="row">
-                <c:forEach var="usuario" items="${usuarios}">
-                    <div class="col-md-6">
-                        <div class="card mb-3">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="${usuario.urlFoto}" class="card-img img-card" alt="perfil">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body h-100 d-flex flex-column justify-content-between">
-                                        <div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h5 class="card-title mb-0">${usuario.nomeCompleto}</h5>
-                                                <div>
-                                                    <c:forEach var="contato" items="${usuario.contatos}">
-                                                        <c:choose>
-                                                            <c:when test="${contato.tipo == 'site'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fas fa-globe text-realocme icons" aria-hidden="true" title="Site/Blog"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:when test="${contato.tipo == 'linkedin'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fab fa-linkedin text-realocme icons" aria-hidden="true" title="Linkedin"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:when test="${contato.tipo == 'facebook'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fab fa-facebook-square text-realocme icons" aria-hidden="true" title="Facebook"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fas fa-globe-americas text-realocme icons" aria-hidden="true" title="Outro/Portfólio"></i>
-                                                                </a>   
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:forEach>
-                                                    <a href="mailto:${usuario.email}" target="_blank">
-                                                        <i class="fas fa-envelope text-realocme icons" aria-hidden="true" title="E-mail"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <p class="card-text mb-1 font-weight-bold text-muted">${usuario.profissao}</p>
-                                        </div>
-                                        <p class="card-text mb-1">${usuario.resumo}</p>
-                                        <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                            <p class="card-text mb-0"><strong class="text-muted">Objetivo:&nbsp;</strong>${usuario.cargoPretendido}</p>
-                                            <a href="indicacao?acao=listar&id=${usuario.id}&nome=${usuario.nomeCompleto}" class="btn btn-success btn-sm mb-0 text-info">Indicações</a>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="w-100 text-center">
+                    <c:choose>
+                        <c:when test="${usuario.id == sessionScope.id}">
+                            <h3>Suas indicações</h3>
+                        </c:when>
+                        <c:when test="${sessionScope.id == null}">
+                            <h3>Indicações de ${usuario.nomeCompleto}</h3>
+                            <p class="text-warning">Logue para adionar uma indicação!</p>
+                        </c:when>
+                        <c:otherwise>
+                            <h3>Indicações de ${usuario.nomeCompleto}</h3>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNovaIndicacao">
+                                Adicionar nova indicação
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <c:forEach var="indicacao" items="${indicacoes}">
+                    <div class="col-sm-6">
+                        <div class="card mt-4">
+                            <div class="card-header">Indicação</div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p>${indicacao.comentario}</p>
+                                    <footer class="blockquote-footer">Por <cite title="Source Title">${indicacao.nomePessoa}</cite></footer>
+                                </blockquote>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
             </div>
         </section>
-        
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalNovaIndicacao" tabindex="-1" role="dialog" aria-labelledby="modalNovaIndicacaoCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalNovaIndicacaoTitulo">Cadastrar Indicação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formIndicacao" method="POST" action="indicacao?acao=cadastrar">
+                            <input type="hidden" name="id" id="id" value="${usuario.id}" required>
+                            <c:choose>
+                                <c:when test="${sessionScope.id != null}">
+                                    <div class="form-group">
+                                        <label for="nome">Seu nome:</label>
+                                        <input type="text" name="nome" id="nome" class="form-control" value="${sessionScope.nome}" maxlength="100" required>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="form-group">
+                                        <label for="nome">Seu nome:</label>
+                                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" maxlength="100" required>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="form-group">
+                                <label for="resumo">Comentário:</label>
+                                <textarea name="comentario" id="comentario" class="form-control" rows="8" placeholder="Seu comentário" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer mb-3">
+                        <button type="submit" form="formIndicacao" class="btn btn-primary mr-3">Enviar Indicação</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then FontAwesome -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

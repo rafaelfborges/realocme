@@ -5,42 +5,69 @@
  */
 package controller;
 
+import dao.ContatoDAO;
+import dao.IndicacaoDAO;
+import dao.UsuarioDAO;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Contato;
+import model.Usuario;
 
 /**
  *
  * @author Red
  */
 public class HomeController extends HttpServlet {
-
+    private UsuarioDAO usuarioDAO;
+    private ContatoDAO contatoDAO;
+    private IndicacaoDAO indicacaoDAO;
+    
+    public HomeController() {
+        this.usuarioDAO = new UsuarioDAO();
+        this.contatoDAO = new ContatoDAO();
+        this.indicacaoDAO = new IndicacaoDAO();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String opcao = request.getParameter("opcao");
-        
-        switch(opcao.trim()){
-            case "cadastrar":
-                request.getRequestDispatcher("pages/cadastro.jsp").forward(request, response);
-                break;
+        try {
+            List<Usuario> usuarios = new ArrayList<>();
             
-            case "listar":
-                //request.getServletContext().getRequestDispatcher("/ListarUsuarioController").forward(request, response);
-                break;
+            ResultSet rsUsuarios = usuarioDAO.findAll();
+            while(rsUsuarios.next()) {                
+                //Pega os contatos
+                List<Contato> contatos = new ArrayList<>();
+                ResultSet rsContatos = contatoDAO.findByUsuarioId(rsUsuarios.getInt("id"));        
+                while(rsContatos.next()) {
+                    contatos.add(new Contato(rsContatos.getString("tipo"), 
+                                             rsContatos.getString("url")));
+                }
                 
-            case "editar":
-                //request.getServletContext().getRequestDispatcher("/EditarUsuarioController?funcao=opcoes").forward(request, response);
-                break;
+                Usuario usuario = new Usuario();
+                usuario.setId(rsUsuarios.getInt("id"));
+                usuario.setUrlFoto(rsUsuarios.getString("url_foto"));
+                usuario.setNomeCompleto(rsUsuarios.getString("nome_completo"));
+                usuario.setEmail(rsUsuarios.getString("email"));
+                usuario.setProfissao(rsUsuarios.getString("profissao"));
+                usuario.setResumo(rsUsuarios.getString("resumo"));
+                usuario.setCargoPretendido(rsUsuarios.getString("cargo_pretendido"));
+                usuario.setContatos(contatos);
                 
-            case "deletar":
-                //request.getServletContext().getRequestDispatcher("/DeletarUsuarioController?funcao=opcoes").forward(request, response);
-                break;
+                usuarios.add(usuario);
+            }
+            
+            request.setAttribute("usuarios", usuarios);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (IOException | SQLException | ServletException ex) {
+            System.out.println("Erro HomeController: " + ex.getMessage());
         }
     }
 
