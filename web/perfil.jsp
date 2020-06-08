@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<jsp:useBean id="usuarios" type="java.util.List<model.Usuario>" scope="request" />
+<jsp:useBean id="usuario" type="model.Usuario" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,67 +74,81 @@
             </nav>
         </header>
 
-        <section class="container mt-4">
-            <!-- Content here -->      
-            <div class="row">
-                <c:forEach var="usuario" items="${usuarios}">
-                    <div class="col-md-6">
-                        <div class="card mb-3">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="${usuario.urlFoto}" class="card-img img-card" alt="perfil">
+        <section class="container mt-4 text-center">
+            <!-- Content here -->
+            <h3>Cadastro Usuário</h3>
+            <form id="formAtualizar">
+                <input type="hidden" name="id" id="id" value="${usuario.id}" required>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nomeCompleto">Nome:</label>
+                                    <input type="text" name="nomeCompleto" id="nomeCompleto" class="form-control" value="${usuario.nomeCompleto}" maxlength="100" required>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="card-body h-100 d-flex flex-column justify-content-between">
-                                        <div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h5 class="card-title mb-0">${usuario.nomeCompleto}</h5>
-                                                <div>
-                                                    <c:forEach var="contato" items="${usuario.contatos}">
-                                                        <c:choose>
-                                                            <c:when test="${contato.tipo == 'site'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fas fa-globe text-realocme icons" aria-hidden="true" title="Site/Blog"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:when test="${contato.tipo == 'linkedin'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fab fa-linkedin text-realocme icons" aria-hidden="true" title="Linkedin"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:when test="${contato.tipo == 'facebook'}">
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fab fa-facebook-square text-realocme icons" aria-hidden="true" title="Facebook"></i>
-                                                                </a>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a href="${contato.url}" target="_blank">
-                                                                    <i class="fas fa-globe-americas text-realocme icons" aria-hidden="true" title="Outro/Portfólio"></i>
-                                                                </a>   
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </c:forEach>
-                                                    <a href="mailto:${usuario.email}" target="_blank">
-                                                        <i class="fas fa-envelope text-realocme icons" aria-hidden="true" title="E-mail"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <p class="card-text mb-1 font-weight-bold text-muted">${usuario.profissao}</p>
-                                        </div>
-                                        <p class="card-text mb-1">${usuario.resumo}</p>
-                                        <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                            <p class="card-text mb-0"><strong class="text-muted">Objetivo:&nbsp;</strong>${usuario.cargoPretendido}</p>
-                                            <a href="indicacao?acao=listar&id=${usuario.id}&nome=${usuario.nomeCompleto}" class="btn btn-success btn-sm mb-0 text-info">Indicações</a>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" id="email" class="form-control" value="${usuario.email}" maxlength="100" required>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="senha">Senha:</label>
+                                    <input type="password" name="senha" id="senha" class="form-control" value="${usuario.senha}" maxlength="50">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="confirmaSenha">Confirma Senha:</label>
+                                    <input type="password" name="confirmaSenha" id="confirmaSenha" class="form-control" value="${usuario.senha}" maxlength="50">
+                                    <span class="invalid-feedback">
+                                        Senhas não conferem! Tente novamente.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profissao">Profissão:</label>
+                            <input type="text" name="profissao" id="profissao" class="form-control" value="${usuario.profissao}" maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resumo">Resumo:</label>
+                            <textarea name="resumo" id="resumo" class="form-control" rows="3" maxlength="140" required>${usuario.resumo}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="cargoPretendido">Cargo Pretendido:</label>
+                            <input type="text" name="cargoPretendido" id="cargoPretendido" class="form-control" value="${usuario.cargoPretendido}" maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="urlFoto">Foto:</label>
+                            <input type="text" name="urlFoto" id="urlFoto" class="form-control" value="${usuario.urlFoto}" required>
+                        </div>
                     </div>
-                </c:forEach>
-            </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <div class="form-inline d-flex flex-row justify-content-center align-self-center mb-2">
+                            <div class="form-group">
+                                <input type="checkbox" name="perfilAtivo" id="perfilAtivo" <c:if test="${usuario.perfilAtivo == 1}">checked</c:if>>
+                                <p class="mt-3 ml-2">Perfil ativo para busca?</p>
+                            </div>
+                        </div>
+                                                                       
+                        <button id="buttonAtualizar" class="btn btn-success btn-lg" type="submit">Atualizar</button>
+                        <a href="/realocme">
+                            <button id="buttonVoltar" class="btn btn-dark btn-lg" type="button">Voltar</button>
+                        </a>
+                    </div>
+                </div>
+            </form>
         </section>
-        
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then FontAwesome -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

@@ -6,6 +6,7 @@
 package model;
 
 public class Indicacao {
+    private int id;
     private String nomePessoa;
     private String comentario;
     
@@ -17,6 +18,14 @@ public class Indicacao {
         this.comentario = comentario;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNomePessoa() {
         return nomePessoa;
     }

@@ -22,35 +22,37 @@ public class UsuarioDAO {
     private Conexao conn;
     private String query;
     private PreparedStatement stmt;
-    ResultSet resultado;
+    ResultSet resultSet;
     
     public UsuarioDAO() {
         conn = Conexao.getInstance();
     }
     
-    public int inserirUsuario(Usuario usuario){               
+    public int save(Usuario usuario){               
         try {           
             //BEGIN TRANSACTION
             conn.getConnection().setAutoCommit(false);
             
             //Inserir Usuário na tabela 'usuario'
-            query = "INSERT INTO usuario(nome_completo, email, url_foto, "
-                  + "profissao, resumo, cargo_pretendido) VALUES (?,?,?,?,?,?)";
+            query = "INSERT INTO usuario(nome_completo, email, senha, "
+                    + "url_foto, profissao, resumo, cargo_pretendido) "
+                    + "VALUES (?,?,?,?,?,?,?)";
             
             stmt = conn.getConnection().prepareStatement(query, 
                                                Statement.RETURN_GENERATED_KEYS);
             
             stmt.setString(1, usuario.getNomeCompleto());
             stmt.setString(2, usuario.getEmail());
-            stmt.setString(3, usuario.getUrlFoto());
-            stmt.setString(4, usuario.getProfissao());
-            stmt.setString(5, usuario.getResumo());
-            stmt.setString(6, usuario.getCargoPretendido());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getUrlFoto());
+            stmt.setString(5, usuario.getProfissao());
+            stmt.setString(6, usuario.getResumo());
+            stmt.setString(7, usuario.getCargoPretendido());
             int result = stmt.executeUpdate();
             
-            resultado = stmt.getGeneratedKeys();
-            resultado.first();
-            int usuarioId = resultado.getInt(1);
+            resultSet = stmt.getGeneratedKeys();
+            resultSet.first();
+            int usuarioId = resultSet.getInt(1);
             
             if(result == 1){
                 List<Integer> idsContato = new ArrayList<>();
@@ -66,9 +68,9 @@ public class UsuarioDAO {
                     stmt.setString(2, contato.getUrl());
                     stmt.executeUpdate();
                     
-                    resultado = stmt.getGeneratedKeys();
-                    resultado.first();
-                    idsContato.add(resultado.getInt(1));
+                    resultSet = stmt.getGeneratedKeys();
+                    resultSet.first();
+                    idsContato.add(resultSet.getInt(1));
                 }
                 
                 //Inserir relacionamentos na tabela usuario_contato
@@ -96,21 +98,72 @@ public class UsuarioDAO {
         }
     }
     
-    public int inserirContato(Contato contato) {
+    public ResultSet findAll(){
         try {
-            query = "INSERT INTO contato(tipo, url) VALUES (?,?)";
-            stmt = conn
-                    .getConnection()
-                    .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            query = "SELECT * FROM usuario WHERE perfil_ativo = 1";
+            stmt = conn.getConnection().prepareStatement(query);
+                       
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public ResultSet findUsuarioById(int usuarioId) {
+        try {
+            query = "SELECT * FROM usuario WHERE id = ?";
+            stmt = conn.getConnection().prepareStatement(query);
+            stmt.setInt(1, usuarioId);
+                       
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public ResultSet authUsuario(String email, String password) {
+        try {
+            query = "SELECT id, nome_completo FROM usuario "
+                    + "WHERE email = ? AND senha = ?";
+            stmt = conn.getConnection().prepareStatement(query);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
             
-            stmt.setString(1, contato.getTipo());
-            stmt.setString(2, contato.getUrl());
-            stmt.executeUpdate();
-             
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.first();
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public int update(Usuario usuario) {
+        try {                      
+            query = "UPDATE usuario SET "
+                    + "nome_completo = ?, "
+                    + "email = ?, "
+                    + "senha = ?, "
+                    + "url_foto = ?, "
+                    + "profissao = ?, "
+                    + "resumo = ?, "
+                    + "cargo_pretendido = ?, "
+                    + "perfil_ativo = ? "
+                    + "WHERE usuario.id = ?";
             
-            return rs.getInt(1);
+            stmt = conn.getConnection().prepareStatement(query);
+            
+            stmt.setString(1, usuario.getNomeCompleto());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getUrlFoto());
+            stmt.setString(5, usuario.getProfissao());
+            stmt.setString(6, usuario.getResumo());
+            stmt.setString(7, usuario.getCargoPretendido());
+            stmt.setInt(8, usuario.getPerfilAtivo());
+            stmt.setInt(9, usuario.getId());
+            
+            return stmt.executeUpdate();
         } catch(SQLException e) {
             System.out.println("Erro ao cadastrar: " + e.getMessage());
             return e.getErrorCode();

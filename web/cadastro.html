@@ -1,10 +1,3 @@
-<%-- 
-    Document   : cadastro
-    Created on : 25/05/2020, 19:37:39
-    Author     : Red
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,28 +15,30 @@
     <body>        
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/realocme">
-                  <img src="assets/images/realocme.svg" width="150" height="35" class="d-inline-block align-top" alt="Realoc.me">
+                <a class="navbar-brand" href="home">
+                    <img src="assets/images/realocme.svg" width="150" height="35" class="d-inline-block align-top" alt="Realoc.me">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item active">
-                          <a class="nav-link" href="home?opcao=cadastrar">Cadastrar</a>
+                            <a class="nav-link" href="home">Home</a>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="cadastro.html">Cadastrar</a>
                         </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled" href="#">Disabled</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="login.html">Login</a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
+                    <!-- <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-                    </form>
+                    </form> -->
                 </div>
             </nav>
         </header>
@@ -54,25 +49,49 @@
             <form id="formCadastro">
                 <div class="row">
                     <div class="col-sm-6" id="formColumnA">
-                        <div class="form-group">
-                            <label for="nomeCompleto">Nome:</label>
-                            <input type="text" name="nomeCompleto" id="nomeCompleto" class="form-control" placeholder="Nome completo" required>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nomeCompleto">Nome:</label>
+                                    <input type="text" name="nomeCompleto" id="nomeCompleto" class="form-control" placeholder="Nome completo" maxlength="100" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" maxlength="100" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="senha">Senha:</label>
+                                    <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" maxlength="50" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="confirmaSenha">Confirma Senha:</label>
+                                    <input type="password" name="confirmaSenha" id="confirmaSenha" class="form-control" placeholder="Confirma Senha" maxlength="50" required>
+                                    <span class="invalid-feedback">
+                                        Senhas não conferem! Tente novamente.
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+                                                
                         <div class="form-group">
                             <label for="profissao">Profissão:</label>
-                            <input type="text" name="profissao" id="profissao" class="form-control" placeholder="Ex: Desenvolvedor(a)" required>
+                            <input type="text" name="profissao" id="profissao" class="form-control" placeholder="Ex: Desenvolvedor(a)" maxlength="100" required>
                         </div>
                         <div class="form-group">
                             <label for="resumo">Resumo:</label>
-                            <textarea name="resumo" id="resumo" class="form-control" rows="3" maxlength="140" placeholder="Resumo sobre você" required></textarea>
+                            <textarea name="resumo" id="resumo" class="form-control" rows="3" placeholder="Resumo sobre você" maxlength="140" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="cargoPretendido">Cargo Pretendido:</label>
-                            <input type="text" name="cargoPretendido" id="cargoPretendido" class="form-control" placeholder="Cargo pretendido" required>
+                            <input type="text" name="cargoPretendido" id="cargoPretendido" class="form-control" placeholder="Cargo pretendido" maxlength="100" required>
                         </div>
                     </div>
                     <div class="col-sm-6" id="formColumnB">
@@ -111,13 +130,11 @@
                     <div class="col-sm-12">
                         <button id="buttonCadastrar" class="btn btn-success btn-lg" type="submit">Cadastrar</button>
                         <a href="/realocme">
-                            <button id="buttonCadastrar" class="btn btn-dark btn-lg" type="button">Voltar</button>
+                            <button id="buttonVoltar" class="btn btn-dark btn-lg" type="button">Voltar</button>
                         </a>
                     </div>
                 </div>
             </form>
-            
-            
         </section>
         
         <!-- Optional JavaScript -->
