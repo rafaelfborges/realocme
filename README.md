@@ -14,6 +14,6 @@ Se tornar uma plataforma que ajude profissionais a buscar uma realocação no me
 
 ### Tecnologias
 
-Foi desenvolvido utilizando Java Web com MVC. 
-- Camada de persistência: DAO e Singleton.
+Foi desenvolvido utilizando Java Web e o padrão arquitetural MVC. 
+- Camada de persistência: JDBC, DAO e Singleton.
 - Camada de visualização: JSP, JSTL, HTML, CSS, Material Design, JavaScript, JQuery e Ajax.
